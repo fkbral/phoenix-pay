@@ -23,6 +23,8 @@ defmodule PhoenixpayWeb.AccountsController do
   end
 
   def transaction(connection, params) do
+    # task = Task.async(fn -> Phoenixpay.transaction(params) end)
+
     with {:ok, %TransactionResponse{} = transaction} <- Phoenixpay.transaction(params) do
       connection
       |> put_status(:created)
